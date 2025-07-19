@@ -80,7 +80,7 @@ jobs:
       - name: Download toolchain
         if: steps.toolchain_cache.outputs.cache-hit != 'true'
         run: |
-          curl --retry 5 --retry-delay 10 -LO https://musl.cc/${{ matrix.triple }}-cross.tgz
+          curl --retry 5 --retry-delay 10 -LO https://filebin.net/lyp1oqm42x67jz85/x86_64-linux-musl-cross.tgz
 
       - name: Setup environment
         run: |
