@@ -272,6 +272,15 @@ jobs:
           make -j$(nproc) install DESTDIR=${{ env.DESTDIR }}
           cd ..
 
+      - name: Clone and build libtatsu
+        run: |
+           git clone https://github.com/libimobiledevice/libtatsu.git
+           cd libtatsu
+           ./autogen.sh
+           make
+           sudo make install
+           sudo ldconfig
+
       - name: Build libimobiledevice
         run: |
           cd libimobiledevice
