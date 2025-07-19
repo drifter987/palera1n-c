@@ -67,7 +67,7 @@ jobs:
 
       - name: Download toolchain checksum
         run: |
-          curl -LO https://musl.cc/SHA512SUMS
+          curl --retry 5 --retry-delay 10 -LO https://musl.cc/SHA512SUMS
           echo "TOOLCHAIN_CHECKSUM="$(grep ${{ matrix.triple }}-cross.tgz SHA512SUMS | cut -d' ' -f1) >> $GITHUB_ENV
 
       - name: Download toolchain (cached)
@@ -80,7 +80,7 @@ jobs:
       - name: Download toolchain
         if: steps.toolchain_cache.outputs.cache-hit != 'true'
         run: |
-          curl -LO https://musl.cc/${{ matrix.triple }}-cross.tgz
+          curl --retry 5 --retry-delay 10 -LO https://musl.cc/${{ matrix.triple }}-cross.tgz
 
       - name: Setup environment
         run: |
